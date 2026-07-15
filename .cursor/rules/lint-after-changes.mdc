@@ -1,0 +1,20 @@
+---
+description: Po każdej zmianie kodu uruchom npm run check i npm run slint
+alwaysApply: true
+---
+
+# Lint po zmianach
+
+Po zakończeniu edycji plików w repo (TS/TSX/JSON/SCSS) **zawsze** uruchom w katalogu projektu:
+
+```bash
+npm run check
+npm run slint
+```
+
+- `check` — Biome (TS/TSX/JSON)
+- `slint` — Stylelint (`src/**/*.scss`)
+
+Jeśli któryś skrypt padnie: napraw błędy, potem odpal oba ponownie, zanim uznasz zadanie za skończone.
+
+Nie pomijaj tego kroku nawet przy małych zmianach. Autofix tylko gdy potrzeba: `npm run write` / `npm run slint:fix`, potem znowu `check` + `slint`.

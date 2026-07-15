@@ -1,0 +1,31 @@
+---
+description: Konwencje stylowania SCSS (BEM, partials, mobile-first)
+globs: "**/*.{scss,tsx}"
+alwaysApply: false
+---
+
+# Style SCSS
+
+- Zwykły SCSS (bez CSS Modules). Import w komponencie: `import './TodoItem.scss'`
+- Globalne: `src/app/globals.scss` + `@use` partiali z `src/styles/`
+- Shared partials: `_variables.scss`, `_mixins.scss`, `_reset.scss`
+- Kolory, fonty, spacing, breakpointy — tylko ze zmiennych (`$color-*`, `$spacing-unit`, …)
+- Responsywność: mobile-first + `@include respond-to(sm|md)` z `_mixins.scss`
+
+## BEM
+
+```scss
+.todo-item { }
+.todo-item__title { }
+.todo-item--completed { }
+```
+
+```tsx
+// ✅
+import './TodoItem.scss';
+<div className="todo-item todo-item--completed">
+
+// ❌ Tailwind, inline styles, CSS Modules, klasy bez BEM
+```
+
+Nie dodawaj nowych globalnych kolorów poza `_variables.scss`.

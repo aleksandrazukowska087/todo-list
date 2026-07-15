@@ -1,0 +1,28 @@
+---
+description: Struktura katalogów i warstwy aplikacji Next.js todo-list
+alwaysApply: true
+---
+
+# Struktura projektu
+
+Stack: Next.js 15 (App Router) + TypeScript + SCSS + Supabase. Alias importów: `@/*` → `src/*`.
+
+```
+src/
+├── app/              # Routing (layout, page, login, register), globals.scss
+├── components/       # UI — jeden folder na komponent (Component.tsx + Component.scss)
+├── hooks/            # Logika UI (useTodos, useTheme)
+├── services/         # CRUD / auth wobec Supabase
+├── lib/supabase/     # client.ts (browser), server.ts (RSC)
+├── types/            # Typy domenowe (todo.ts)
+├── utils/            # Walidatory i helpery
+└── styles/           # Shared SCSS: _variables, _mixins, _reset
+supabase/migrations/  # SQL + RLS
+```
+
+## Zasady
+
+- Logika biznesowa w `hooks/` i `services/`, nie w komponentach prezentacyjnych
+- Komponenty z hookami / eventami: `'use client'` na górze pliku
+- Fetch SSR w `app/page.tsx` (Server Component) → props do Client Components
+- Nowe UI tylko w `src/components/<Nazwa>/`, nie luzem w `app/`
