@@ -1,0 +1,19 @@
+@use '../styles/variables' as *;
+@use '../styles/reset';
+
+html {
+  font-size: $font-size-base;
+}
+
+body {
+  font-family: $font-family;
+  color: $color-text;
+  background-color: $color-bg;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:focus-visible {
+  outline: 2px solid $color-primary;
+  outline-offset: 2px;
+}

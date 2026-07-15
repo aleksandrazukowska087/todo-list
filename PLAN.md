@@ -351,19 +351,19 @@ $breakpoint-md: 768px;
 
 ### Faza 1 — Inicjalizacja projektu (dzień 1)
 
-- [ ] `npx create-next-app@latest . --typescript --app --src-dir --no-tailwind --import-alias "@/*"`
-- [ ] Instalacja SCSS (`npm i -D sass`)
-- [ ] Konfiguracja Biome (lint + format dla TS/TSX/JSON)
-- [ ] Konfiguracja Stylelint (lint dla SCSS)
+- [x] `npx create-next-app@latest . --typescript --app --src-dir --no-tailwind --import-alias "@/*"`
+- [x] Instalacja SCSS (`npm i -D sass`)
+- [x] Konfiguracja Biome (lint + format dla TS/TSX/JSON)
+- [x] Konfiguracja Stylelint (lint dla SCSS)
 - [ ] Utworzenie projektu w [Supabase Dashboard](https://supabase.com/dashboard)
-- [ ] Instalacja klienta Supabase (`npm i @supabase/supabase-js @supabase/ssr`)
-- [ ] Plik `.env.local` + `.env.local.example`
-- [ ] Migracja SQL: tabela `todos` + trigger `updated_at` + RLS
-- [ ] `lib/supabase/client.ts` i `lib/supabase/server.ts`
-- [ ] Utworzenie struktury folderów (`lib/`, `services/`, `components/`, `hooks/`, `types/`, `utils/`, `styles/`)
-- [ ] Pliki globalnych stylów (`_variables`, `_mixins`, `_reset`) + `app/globals.scss`
-- [ ] `layout.tsx` z metadata i importem `globals.scss`
-- [ ] `page.tsx` — SSR fetch z Supabase + `TodoApp` z `initialTodos`
+- [x] Instalacja klienta Supabase (`npm i @supabase/supabase-js @supabase/ssr`)
+- [x] Plik `.env.local` + `.env.local.example`
+- [x] Migracja SQL: tabela `todos` + trigger `updated_at` + RLS
+- [x] `lib/supabase/client.ts` i `lib/supabase/server.ts`
+- [x] Utworzenie struktury folderów (`lib/`, `services/`, `components/`, `hooks/`, `types/`, `utils/`, `styles/`)
+- [x] Pliki globalnych stylów (`_variables`, `_mixins`, `_reset`) + `app/globals.scss`
+- [x] `layout.tsx` z metadata i importem `globals.scss`
+- [x] `page.tsx` — SSR fetch z Supabase + `TodoApp` z `initialTodos`
 
 ### Faza 2 — Autentykacja, typy i logika (dzień 2–3)
 

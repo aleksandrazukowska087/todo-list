@@ -1,0 +1,57 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.todo-app {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: ($spacing-unit * 3) ($spacing-unit * 2);
+
+  @include respond-to(md) {
+    padding: ($spacing-unit * 6) ($spacing-unit * 3);
+  }
+
+  &__header {
+    margin-bottom: $spacing-unit * 4;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: $color-text;
+  }
+
+  &__subtitle {
+    margin-top: $spacing-unit;
+    font-size: $font-size-sm;
+    color: $color-muted;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-unit;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-unit * 2;
+    padding: $spacing-unit * 2;
+    background: #fff;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+  }
+
+  &__item-title {
+    font-size: $font-size-base;
+  }
+
+  &__item-badge {
+    flex-shrink: 0;
+    font-size: $font-size-sm;
+    color: $color-success;
+  }
+}
