@@ -1,4 +1,5 @@
--- supabase/migrations/001_create_todos.sql
+-- Run once in Supabase Dashboard → SQL Editor
+-- Project: https://supabase.com/dashboard/project/eokgsehbntupgtayweng/sql/new
 
 create type public.todo_priority as enum ('low', 'medium', 'high');
 
@@ -12,10 +13,10 @@ create table public.todos (
   position    integer not null default 0,
   created_at  timestamptz not null default now(),
   updated_at  timestamptz not null default now(),
-  user_id     uuid not null references auth.users(id) on delete cascade
+  -- nullable until Auth (phase 2)
+  user_id     uuid references auth.users(id) on delete cascade
 );
 
--- Trigger: automatyczna aktualizacja updated_at
 create or replace function public.handle_updated_at()
 returns trigger as $$
 begin
@@ -28,17 +29,24 @@ create trigger todos_updated_at
   before update on public.todos
   for each row execute function public.handle_updated_at();
 
--- Row Level Security — dostęp tylko do własnych zadań
 alter table public.todos enable row level security;
 
-create policy "Users can view own todos" on public.todos
-  for select using (auth.uid() = user_id);
+-- Phase 1 demo: open access so SSR works before Auth
+create policy "Public can view todos" on public.todos
+  for select using (true);
 
-create policy "Users can insert own todos" on public.todos
-  for insert with check (auth.uid() = user_id);
+create policy "Public can insert todos" on public.todos
+  for insert with check (true);
 
-create policy "Users can update own todos" on public.todos
-  for update using (auth.uid() = user_id);
+create policy "Public can update todos" on public.todos
+  for update using (true);
 
-create policy "Users can delete own todos" on public.todos
-  for delete using (auth.uid() = user_id);
+create policy "Public can delete todos" on public.todos
+  for delete using (true);
+
+insert into public.todos (title, completed, priority, tags, position, deadline) values
+  ('Kupić mleko i pieczywo', false, 'medium', array['zakupy'], 1, now() + interval '1 day'),
+  ('Zrobić review PR-a', false, 'high', array['praca', 'code'], 2, now() + interval '2 days'),
+  ('Pobiegać 5 km', false, 'low', array['sport'], 3, null),
+  ('Opłacić rachunek za internet', true, 'high', array['finanse'], 4, now() - interval '1 day'),
+  ('Przeczytać dokumentację Supabase RLS', false, 'medium', array['nauka'], 5, now() + interval '7 days');

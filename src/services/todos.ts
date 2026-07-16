@@ -5,8 +5,7 @@ export async function getTodos(supabase: SupabaseClient): Promise<Todo[]> {
   const { data, error } = await supabase
     .from('todos')
     .select('*')
-    .order('position', { ascending: true })
-    .order('created_at', { ascending: false });
+    .order('position', { ascending: true });
 
   if (error) {
     throw new Error(error.message);

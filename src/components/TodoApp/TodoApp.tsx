@@ -5,17 +5,20 @@ import './TodoApp.scss';
 
 interface TodoAppProps {
   initialTodos: Todo[];
+  error?: string | null;
 }
 
-export function TodoApp({ initialTodos }: TodoAppProps) {
+export function TodoApp({ initialTodos, error = null }: TodoAppProps) {
   return (
     <div className="todo-app">
       <header className="todo-app__header">
         <h1 className="todo-app__title">Todo List</h1>
         <p className="todo-app__subtitle">
-          {initialTodos.length === 0
-            ? 'Brak zadań — dodaj pierwsze w kolejnych fazach'
-            : `Załadowano ${initialTodos.length} zadań`}
+          {error
+            ? `Błąd: ${error}`
+            : initialTodos.length === 0
+              ? 'Brak zadań — dodaj pierwsze w kolejnych fazach'
+              : `Załadowano ${initialTodos.length} zadań`}
         </p>
       </header>
 
